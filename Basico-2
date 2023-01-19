@@ -1,0 +1,148 @@
+// es una estructura de datos de un objeto de la vida real al mundo de la programacion 
+//describiendo sus caracteristicas y acciones para que mediante de valores de propiedad 
+// permita que dicho objeto se pueda almacenar.
+
+var objeto = {              
+    propiedad1 :"valor",   //aca podemos observa como a un objeto podemos agregarle varias
+    propiedad2 :"valor",   //propiedades 
+}
+
+//la propiedades son los atributos o caracteriticas que permiten describir mas definidamente el objeto
+// ejemplo: una casa de color amarillo 
+// el objeto viene siendo la casa y la propiedad el color amarillo 
+
+
+//ejemplo 
+
+var casa = {
+    pisos: 4,
+    estilo: "americano",
+    añodeantiguedad: 12,
+}
+
+//las propiedades que llevan una funsion como valor es un metodo, este nos permite ejecutar las propiedades que 
+//necesitemos expresar de ese objeto
+// ejemplo
+ 
+var casa = {
+    pisos: 4,
+    estilo: "americano",
+    añodeantiguedad: 12,
+    detallescasa: function(){
+        console.log("casa ${this.pisos} ${this.estilo}")
+    }
+};
+
+//y la forma en que podemos acceder a ese metodo es mandando a llamar como una funcion a mi objeto 
+//conjuto a  la palabra clave asignada a mi funsion  
+
+casa.detallecasa();
+
+
+//Es necesario saber la propiedad del objeto para acceder a su valor y exiten 
+//2 formas 
+
+ //1 Mediante la notacion de corchetes 
+ objeto["propiedad"]  //permite que accedamos con la apertura de los corchetes a la propiedad
+
+ // 2 Mediante la notacion de punto
+ objeto.propiedad     //indica con un punto la propiedad del obejto
+
+ // y con el parentesis lo usamos para ejecutar
+ objeto.propiedad()
+
+
+// Para agregar un valor a la propiedad del objeto le agregamos el operador de igual                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
+objeto.["propiedad"] = "valor"
+
+//ejemplo
+
+miCasa["color"] = "amarilla"  //usando una propiedad diferente a las que tenemos me permite describir mas el objeto
+
+//para cambiar un valor a la propiedad del objeto  usamos el mismo operador de = 
+// a diferentcia que colocamos una propiedad que ya tengamos modificando el valor de esta
+
+objeto.["color"] ="azul" //como ya no quiero el color amarillo cambio su valor azul
+
+
+//Para eliminar una propiedad que ya no queremos que tenga el objeto usamos delete
+
+delete casa["color"]  //o
+delete casa.color      //como obeservamos colocamos el primero el delete seguido del objeto 
+//y la propiedad que ya no necesitemos 
+
+
+//el objeto contexto this nos ayudar acceder a los valores de la propiedad de un objeto
+//que ya tenemos por otro obejto independiente
+
+var casa = {   //aca tenemos un objeto ya terminada su descripcion
+    pisos: 4,
+    estilo: "americano",
+    añodeantiguedad: 12,
+};
+
+//ahora tengo otra casa pero en un lago y pero tiene la misma propiedad de pisos 
+//y estilo que la casa anterior entonces procedemos 
+
+var casalago = {
+    estilo: "americano",
+    añodeantiguedad: 12,
+ detalle: function () {                        //el this nos permite jalar a este nuevo objeto las propiedades
+    console.log(`casalago ${this.estilo} del ${this.año}.`)   //que ya tenemos reservadas del objeto anterior que era solo la casa
+    
+  },
+}
+  
+//inclusive en la consola al tan solo poner la variable de casalago automaticamente 
+//tendra esas propiedad ya agregadas 
+
+
+//Una funcion constructora sirve para crear arios onjetos a partir de nueva informacion
+//para crear esta funcion, debemos definir los parametros correspondientes 
+//que serán los atributos del objeto, que cambiarán con la nueva información mediante argumentos. 
+//Estos argumentos deben hacer referencia a cada uno del nuevo objeto, 
+//esto mediante el objeto contexto this.
+// esta palabra reservada this nos permitira construir una nueva instamcia 
+
+//ejemplo 
+
+function moto(marca, annio, cilindrada){  //esta funcion esta aplicando que mi objeto  el auto tendra esas propiedades como parametros
+    this.marca = marca; // el this hace referencia al objeto
+    this.annio = annio; //pero al agregarle la propiedad entonces el this hace refencia a la propiedad de dicho objeto
+    this.cilindrada = cilindrada;
+}
+
+// al colocar la palabra moto en la consola arrojara el templei de la funcion con sus propiedades
+
+// para agregar los nuevo objetos haremos lo siguiente 
+var motonueva = new moto("yamaha", 2017, 200); //llamaremos la nueva variable motonueva
+// seguido de la palabra reservada new a relacion con el templei que hemos construido de esta funsion constructora
+
+// al mandar a llamar el objeto nuevo aparecera todos las propiedades con los nuevos valores 
+
+motonueva
+moto {marca: "yamaha", annio: 2017, cilindrada: 200}
+
+//y si necesitamos agregar mas objetos entonces repetiremos el mismo prosedimiento
+
+// ahora como seria hacer este proceso de manera mas automatica 
+
+var listaMotos = []; // inicializamos con la variable que utilizaremos 
+
+function motos (marca, modelo, annio, cilindraje){   // creamos nuestra funcion constructora, conjunto a nuestro objeto    
+    this.marca = marca;   //la palabra reservada this hara como referencia que el objeto que tendra atributos que cambiaran de informacion
+    this.modelo = modelo;
+    this.annio = annio;
+    this.cilindraje = cilindraje;
+}
+ 
+for(let i = 0 ; i < 30 ; i++){  //empleamos el for como bucle que se repetira hasta que se cumpla la condision completamente 
+    var marca = prompt("Ingrese la marca de la moto:"); // el prompt es un metodo de algun objeto window de js que se usa para mostrar un cuadro de 
+    var modelo = prompt("Ingrese el modelo de la moto:");//dialogo con un mensaje que solicita al usuario que ingrese algun texto o informacion
+    var annio = prompt("Ingrese el año de la moto:");// en este caso nos permitira arrojar lo que estamos solicitando dentro de los parentesis ß000
+    var cilindraje = prompt("ingrese el cilindraje de la moto:");
+    motos.push(new auto (marca,modelo,annio,cilindraje));  //el push nos permitira agragar varios elementos a la array 
+}
+for(let i = 0 ; i < motos.length ; i++){ // el lenght nos ayudara a devolver la longitud del array 
+    console.log(motos[i]);  //nos permitira ejecutrar una o varias veces las instrucciones 
+}
